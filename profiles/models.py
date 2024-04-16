@@ -22,4 +22,3 @@ class Profile(models.Model):
             str: The username of the associated user.
         """
         return self.user.username
-
