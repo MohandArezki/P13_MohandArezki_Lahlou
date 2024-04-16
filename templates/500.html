@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}500 - Internal Server Error{% endblock title %}
+
+{% block content %}
+    <div class="container text-center mt-5">
+        <h1 class="page-header-ui-title mb-3 display-6">500 - Internal Server Error</h1>
+        <p class="lead">Sorry, an internal server error occurred. We are working to resolve the issue.</p>
+        <p>Go back to <a href="{% url 'index' %}">Home</a>.</p>
+    </div>
+{% endblock %}
