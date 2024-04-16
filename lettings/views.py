@@ -1,5 +1,9 @@
 from django.shortcuts import render, get_object_or_404
+import logging
 from .models import Letting
+
+# Configuration du logger pour ce module.
+logger = logging.getLogger(__name__)
 
 
 # Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit.
@@ -19,6 +23,7 @@ def index(request):
     Returns:
         HttpResponse: Rendered response containing the lettings list.
     """
+    logger.info("Displaying the list of lettings.")
     lettings_list = Letting.objects.all()
     context = {'lettings_list': lettings_list}
     return render(request, 'lettings/index.html', context)
@@ -50,6 +55,7 @@ def letting(request, letting_id):
         HttpResponse: Rendered response containing the letting details.
     """
     letting = get_object_or_404(Letting, id=letting_id)
+    logger.info(f"Displaying details of letting ID:{letting_id}")
     context = {
         'title': letting.title,
         'address': letting.address,

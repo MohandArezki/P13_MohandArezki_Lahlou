@@ -1,6 +1,6 @@
 import os
 import sentry_sdk
-
+import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -129,3 +129,71 @@ sentry_sdk.init(
     profiles_sample_rate=1.0,
 
 )
+
+# Directory for log files
+LOGGING_DIR = os.path.join(BASE_DIR, "logging")
+
+# Create the directory if it doesn't exist
+if not os.path.exists(LOGGING_DIR):
+    os.makedirs(LOGGING_DIR)
+
+# Generate logging file name
+today = datetime.datetime.now().strftime("%Y-%m-%d")
+LOGGING_FILE = os.path.join(LOGGING_DIR, f"{today}.log")
+
+# Handlers manage the destination and format of logs
+LOGGING = {
+    "version": 1,  # Logging configuration version
+    "disable_existing_loggers": False,  # Do not disable existing loggers
+    # Formatters define the format of log messages
+    "formatters": {
+        "standard": {
+            "format": "%(levelname)-8s %(asctime)s %(module)s %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    # Handlers manage the destination and format of logs
+    "handlers": {
+        "sentry": {
+            "level": "WARNING",  # Log level for Sentry
+            "class": "sentry_sdk.integrations.logging.EventHandler",
+        },
+        "console": {
+            "class": "logging.StreamHandler",  # Output logs to console
+            "formatter": "standard",  # Use the standard formatter
+        },
+        "file": {
+            "level": "INFO",  # Log level for file
+            "class": "logging.FileHandler",  # Handler for writing to a file
+            "filename": LOGGING_FILE,  # Path to the log file
+            "formatter": "standard",  # Use the standard formatter
+        },
+    },
+    # Loggers specify handlers and log level
+    "loggers": {
+        "django": {
+            "handlers": [
+                "sentry",
+                "console",
+                "file",
+            ],  # Handlers used by this logger
+            "level": "WARNING",  # Log level for Django
+            "propagate": True,  # Propagate logs to parent loggers
+        },
+        "lettings": {
+            "handlers": ["sentry", "console", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "profiles": {
+            "handlers": ["sentry", "console", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "oc_lettings_site": {
+            "handlers": ["sentry", "console", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
