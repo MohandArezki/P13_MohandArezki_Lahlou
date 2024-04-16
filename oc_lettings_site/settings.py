@@ -22,8 +22,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'oc_lettings_site.apps.OCLettingsSiteConfig',
-    'lettings.apps.LettingsConfig', # The "lettings" app 
-    'profiles.apps.ProfilesConfig', # The "profiles" app 
+    'lettings.apps.LettingsConfig',  # The "lettings" app
+    'profiles.apps.ProfilesConfig',  # The "profiles" app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -113,4 +113,4 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static",]
+STATICFILES_DIRS = [BASE_DIR / "static", ]
