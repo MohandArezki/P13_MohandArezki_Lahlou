@@ -56,7 +56,7 @@ jobs:
         run: |
           docker build . \
           --file Dockerfile \
-          --tag oc_lettings_site: $(git rev-parse --short HEAD) \
+          --tag oc_lettings_site:$(git rev-parse --short HEAD) \
           --tag lahlou1973/oc_lettings_site:latest
   
       - name: Log in to Docker Hub
