@@ -2,21 +2,31 @@ import os
 import sentry_sdk
 import datetime
 from pathlib import Path
+from dotenv import load_dotenv
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load environment variables from .env file
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+SECRET_KEY = os.getenv("OC_LETTINGS_DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv("OC_LETTINGS_DEBUG", "").lower() == "true"
+# SECURITY WARNING: define the correct hosts in production!
+ALLOWED_HOSTS = os.getenv("OC_LETTINGS_SITE_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# SECURITY WARNING: define the correct hosts in production!
+# Retrieve Sentry DSN from environment variables
+SENTRY_DSN = os.getenv("OC_LETTINGS_SENTRY_DSN")
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
 
 
 # Application definition
@@ -119,7 +129,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
 
 sentry_sdk.init(
-    dsn="https://3a048b391b5c4342260faf8722014477@o4507090067849216.ingest.de.sentry.io/4507098143195216",
+    dsn=SENTRY_DSN,
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     traces_sample_rate=1.0,
