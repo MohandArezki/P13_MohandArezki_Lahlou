@@ -1,0 +1,54 @@
+name: Django CI/CD
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.11]
+
+    steps:
+      - name: Set Git Commit Message
+        run: echo "MESSAGE=$(git log --format=%B -n 1 | tr -d '\n' | tr -cd '[:alnum:]-._')" >> $GITHUB_ENV
+
+      - name: Show Short Commit SHA
+        run: echo $(git rev-parse --short HEAD)
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate staticfiles
+        run: |
+          python manage.py collectstatic --noinput
+
+      - name: Run Tests
+        run: |
+          python manage.py test
+
+      - name: Linting
+        run: |
+          flake8
+
+      - name: Run tests with coverage
+        if: steps.linting.outcome == ''
+        run: |
+          coverage run --source='.' manage.py test
+          coverage report --fail-under=80
