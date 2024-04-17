@@ -1,5 +1,9 @@
 from django.shortcuts import render
+import logging
 from django.http import HttpRequest
+
+
+logger = logging.getLogger(__name__)
 
 
 # Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie quam lobortis leo
@@ -19,6 +23,7 @@ def index(request):
     Returns:
         HttpResponse: Rendered response for the index page.
     """
+    logger.info("Displaying home page.")
     return render(request, 'index.html')
 
 
