@@ -3,6 +3,8 @@ from django.urls import path, include
 
 from . import views
 
+handler404 = 'oc_lettings_site.views.handler404'
+handler500 = 'oc_lettings_site.views.handler500'
 
 urlpatterns = [
     path('', views.index, name='index'),
