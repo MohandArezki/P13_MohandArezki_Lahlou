@@ -7,9 +7,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-   
   build:
-    name: oc_lettings_site Continious Integration
+    name: oc_lettings_site Continuous Integration
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -17,6 +16,10 @@ jobs:
         python-version: [3.11]
 
     steps:
+      - name: Set Git Commit Message
+        id: git_message
+        run: echo "COMMIT_MESSAGE=$(git log --format=%B -n 1 | tr -d '\n' | tr -cd '[:alnum:]-._')" >> $GITHUB_ENV
+
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
@@ -40,3 +43,16 @@ jobs:
         run: |
           coverage run --source='.' manage.py test
           coverage report --fail-under=80
+      - name: Build and push Docker image
+        run: |
+          docker build . \
+          --file Dockerfile \
+          --tag oc_lettings_site:$COMMIT_MESSAGE \
+          --tag lahlou1973/oc_lettings_site:latest
+  
+      - name: Log in to Docker Hub
+        run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+  
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push lahlou1973/oc_lettings_site:latest
