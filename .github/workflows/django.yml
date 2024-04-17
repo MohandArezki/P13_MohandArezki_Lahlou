@@ -15,11 +15,7 @@ jobs:
       matrix:
         python-version: [3.11]
 
-    steps:
-      - name: Set Git Commit Message
-        id: git_message
-        run: echo "COMMIT_MESSAGE=$(git log --format=%B -n 1 | tr -d '\n' | tr -cd '[:alnum:]-._')" >> $GITHUB_ENV
-
+    steps:          
       - uses: actions/checkout@v3
 
       - name: Set up Python ${{ matrix.python-version }}
@@ -49,6 +45,10 @@ jobs:
         run: |
           coverage run --source='.' manage.py test
           coverage report --fail-under=80
+      
+      - name: Set Git Commit Message
+        id: git_message
+        run: echo "COMMIT_MESSAGE=$(git log --format=%B -n 1 | tr -d '\n' | tr -cd '[:alnum:]-._')" >> $GITHUB_ENV
 
       - name: Build and push Docker image
         run: |
