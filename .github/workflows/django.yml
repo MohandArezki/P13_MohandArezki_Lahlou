@@ -47,7 +47,7 @@ jobs:
         run: |
           docker build . \
           --file Dockerfile \
-          --tag oc_lettings_site:$COMMIT_MESSAGE \
+          --tag oc_lettings_site:${{ env.MESSAGE }} \
           --tag lahlou1973/oc_lettings_site:latest
   
       - name: Log in to Docker Hub
