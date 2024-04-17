@@ -71,4 +71,14 @@ jobs:
   
       - name: Push Docker image to Docker Hub
         run: |
-          docker push lahlou1973/oc_lettings_site:latest      
+          docker push lahlou1973/oc_lettings_site:latest
+      
+  trigger_render_deployment:
+    name: Trigger Render Deployment
+    runs-on: ubuntu-latest
+    needs: [build_and_push_docker]
+
+    steps:
+      - name: Trigger Render Deployment
+        run: |
+          curl -X POST "https://api.render.com/deploy/srv-cntiobfsc6pc73cblgfg?key=UvhYD9esvEo&imgURL=docker.io%2Flahlou1973%2Foc_lettings_site%3Alatest"
