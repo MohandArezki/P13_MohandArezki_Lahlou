@@ -16,9 +16,6 @@ jobs:
         python-version: [3.11]
 
     steps:  
-      - name: Set Git Commit Message
-        run: echo "COMMIT_MESSAGE=$(git log --format=%B -n 1 | tr -d '\n' | tr -cd '[:alnum:]-._')" >> $GITHUB_ENV
-        
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -57,10 +54,9 @@ jobs:
     steps:
       - name: Build Docker image
         run: |
-          echo "Commit message: ${{ env.COMMIT_MESSAGE }}"
           docker build . \
           --file Dockerfile \
-          --tag oc_lettings_site:${{ env.COMMIT_MESSAGE }} \
+          --tag oc_lettings_site: $(git rev-parse --short HEAD) \
           --tag lahlou1973/oc_lettings_site:latest
   
       - name: Log in to Docker Hub
