@@ -57,6 +57,7 @@ jobs:
     steps:
       - name: Build Docker image
         run: |
+          echo "Commit message: ${{ env.COMMIT_MESSAGE }}"
           docker build . \
           --file Dockerfile \
           --tag oc_lettings_site:${{ env.COMMIT_MESSAGE }} \
