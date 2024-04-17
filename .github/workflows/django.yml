@@ -16,12 +16,6 @@ jobs:
         python-version: [3.11]
 
     steps:
-      - name: Set Git Commit Message
-        run: echo "MESSAGE=$(git log --format=%B -n 1 | tr -d '\n' | tr -cd '[:alnum:]-._')" >> $GITHUB_ENV
-
-      - name: Show Short Commit SHA
-        run: echo $(git rev-parse --short HEAD)
-
       - name: Checkout Repository
         uses: actions/checkout@v3
 
