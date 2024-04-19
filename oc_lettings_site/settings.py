@@ -4,7 +4,6 @@ import datetime
 from pathlib import Path
 from dotenv import load_dotenv
 
-
 # Load environment variables from .env file
 load_dotenv()
 
@@ -17,7 +16,11 @@ SECRET_KEY = os.getenv("OC_LETTINGS_DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("OC_LETTINGS_DEBUG", "").lower() == "true"
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = os.getenv("OC_LETTINGS_SITE_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS = os.getenv("OC_LETTINGS_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+
+# SECURITY WARNING: define the correct CSRF_TRUSTED_ORIGINS
+CSRF_TRUSTED_ORIGINS = os.getenv("OC_LETTINGS_CSRF_TRUSTED_ORIGINS",
+                                 "http://localhost,http://127.0.0.1").split(",")
 
 # Retrieve Sentry DSN from environment variables
 SENTRY_DSN = os.getenv("OC_LETTINGS_SENTRY_DSN")
@@ -86,7 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -96,7 +98,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -130,6 +131,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
