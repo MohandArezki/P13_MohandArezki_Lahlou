@@ -19,9 +19,23 @@ DEBUG = os.getenv("OC_LETTINGS_DEBUG", "").lower() == "true"
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = os.getenv("OC_LETTINGS_SITE_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
-# SECURITY WARNING: define the correct hosts in production!
 # Retrieve Sentry DSN from environment variables
 SENTRY_DSN = os.getenv("OC_LETTINGS_SENTRY_DSN")
+
+# Retrieve Sentry environment
+SENTRY_ENV = os.getenv("OC_LETTINGS_SENTRY_ENV")
+
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+    environment=SENTRY_ENV
+)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -124,18 +138,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
-
-sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    traces_sample_rate=1.0,
-    # Set profiles_sample_rate to 1.0 to profile 100%
-    # of sampled transactions.
-    # We recommend adjusting this value in production.
-    profiles_sample_rate=1.0,
-
-)
 
 # Directory for log files
 LOGGING_DIR = os.path.join(BASE_DIR, "logging")
