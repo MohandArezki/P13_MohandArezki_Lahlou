@@ -63,16 +63,17 @@ jobs:
         run: |
           docker build . \
           --file Dockerfile \
-          --tag oc_lettings_site:$(date -u +"%Y%m%d%H%M%S") \
+          --tag lahlou1973/oc_lettings_site:$(git rev-parse HEAD) \
           --tag lahlou1973/oc_lettings_site:latest
+
   
       - name: Log in to Docker Hub
         run: echo ${{ secrets.DOCKER_HUB_PASSWORD }} | docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
   
       - name: Push Docker image to Docker Hub
         run: |
-          docker push lahlou1973/oc_lettings_site:latest
-      
+          docker push lahlou1973/oc_lettings_site:$(git rev-parse HEAD) lahlou1973/oc_lettings_site:latest
+        
   trigger_render_deployment:
     name: Trigger Render Deployment
     runs-on: ubuntu-latest
