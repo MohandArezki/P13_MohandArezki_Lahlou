@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Réduire diverses dettes techniques existantes dans le projet &mdash; Documentation Orange County Lettings 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d1a510d7"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Surveillance de l’application et suivi des erreurs via Sentry" href="logging_monitoring.html" />
+    <link rel="prev" title="Structure de la base de données" href="base-de-donnees.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a_propos.html">À Propos du Projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies_utilisees.html">Technologies et Langages Utilisés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation-en-local.html">Installation du projet sur votre machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture_modulaire.html">Réorganiser l’architecture modulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base-de-donnees.html">Structure de la base de données</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Réduire diverses dettes techniques existantes dans le projet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#correction-des-erreurs-de-linting">Correction des erreurs de linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#correction-de-la-pluralisation-pour-le-terme-address">Correction de la pluralisation pour le terme « address »</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gestion-des-erreurs-404-et-500">Gestion des erreurs 404 et 500</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-du-code-en-gardant-les-commentaires-existants">Documentation du code en gardant les commentaires existants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mise-en-place-des-tests-unitaires">Mise en place des tests unitaires</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging_monitoring.html">Surveillance de l’application et suivi des erreurs via Sentry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_d_utilisation.html">Guide d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cd-cd.html">Mise en place d un pipeline CI/CD</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Orange County Lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Réduire diverses dettes techniques existantes dans le projet</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/reduire_dettes_techniques.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reduire-diverses-dettes-techniques-existantes-dans-le-projet">
+<h1>Réduire diverses dettes techniques existantes dans le projet<a class="headerlink" href="#reduire-diverses-dettes-techniques-existantes-dans-le-projet" title="Lien vers cette rubrique"></a></h1>
+<section id="correction-des-erreurs-de-linting">
+<h2>Correction des erreurs de linting<a class="headerlink" href="#correction-des-erreurs-de-linting" title="Lien vers cette rubrique"></a></h2>
+<p>Résolution des erreurs de linting tout en préservant la configuration du linting dans setup.cfg et en maintenant les commentaires intacts.</p>
+<img alt="_images/flake8.png" class="align-center" src="_images/flake8.png" />
+</section>
+<section id="correction-de-la-pluralisation-pour-le-terme-address">
+<h2>Correction de la pluralisation pour le terme « address »<a class="headerlink" href="#correction-de-la-pluralisation-pour-le-terme-address" title="Lien vers cette rubrique"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># lettings/models.py</span>
+<span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+      <span class="o">.</span>
+      <span class="o">.</span>
+      <span class="o">.</span>
+   <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Meta options for the Address model.</span>
+<span class="sd">      Attributes:</span>
+<span class="sd">         verbose_name_plural (str): The plural name for the model in the admin interface.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="n">verbose_name_plural</span> <span class="o">=</span> <span class="s2">&quot;addresses&quot;</span>
+</pre></div>
+</div>
+<img alt="_images/address_plural.png" class="align-center" src="_images/address_plural.png" />
+</section>
+<section id="gestion-des-erreurs-404-et-500">
+<h2>Gestion des erreurs 404 et 500<a class="headerlink" href="#gestion-des-erreurs-404-et-500" title="Lien vers cette rubrique"></a></h2>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># oc_lettings_site/urls.py</span>
+
+<span class="n">handler404</span> <span class="o">=</span> <span class="s1">&#39;oc_lettings_site.views.handler404&#39;</span>
+<span class="n">handler500</span> <span class="o">=</span> <span class="s1">&#39;oc_lettings_site.views.handler500&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># oc_lettings_site/views.py</span>
+
+<span class="k">def</span> <span class="nf">handler404</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="ne">Exception</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   View function for handling 404 errors.</span>
+
+<span class="sd">   Parameters:</span>
+<span class="sd">      request (HttpRequest): The HTTP request object.</span>
+<span class="sd">      exception (Exception): The exception object representing the 404 error.</span>
+
+<span class="sd">   Returns:</span>
+<span class="sd">      HttpResponse: Rendered response for the 404 error page.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;404.html&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">404</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">handler500</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">HttpRequest</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   View function for handling 500 errors.</span>
+
+<span class="sd">   Parameters:</span>
+<span class="sd">      request (HttpRequest): The HTTP request object.</span>
+
+<span class="sd">   Returns:</span>
+<span class="sd">      HttpResponse: Rendered response for the 500 error page.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;500.html&#39;</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Erreur 404</p></li>
+</ul>
+<img alt="_images/404_page.png" class="align-center" src="_images/404_page.png" />
+<ul class="simple">
+<li><p>Erreur 500</p></li>
+</ul>
+<img alt="_images/500_page.png" class="align-center" src="_images/500_page.png" />
+</div></blockquote>
+</section>
+<section id="documentation-du-code-en-gardant-les-commentaires-existants">
+<h2>Documentation du code en gardant les commentaires existants<a class="headerlink" href="#documentation-du-code-en-gardant-les-commentaires-existants" title="Lien vers cette rubrique"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># oc_lettings_site/views.py</span>
+
+<span class="c1"># Aliquam sed metus eget nisi tincidunt ornare accumsan eget lac</span>
+<span class="c1"># laoreet neque quis, pellentesque dui. Nullam facilisis pharetra vulputate. Sed tincidunt,</span>
+<span class="c1"># dolor id facilisis fringilla, eros leo tristique lacus, it. Nam aliquam dignissim congue.</span>
+<span class="c1"># Pellentesque habitant morbi tristique senectus et netus et males</span>
+<span class="k">def</span> <span class="nf">profile</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">username</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Displays details of a profile.</span>
+
+<span class="sd">   This view retrieves the profile corresponding to the given username</span>
+<span class="sd">   from the database. If no matching profile is found, a 404 error is</span>
+<span class="sd">   returned. Otherwise, the profile details are rendered in the</span>
+<span class="sd">   &#39;profiles/profile.html&#39; template.</span>
+
+<span class="sd">   Parameters:</span>
+<span class="sd">   - request : HttpRequest</span>
+<span class="sd">      The HTTP request received by the view.</span>
+<span class="sd">   - username : str</span>
+<span class="sd">      The username of the profile to display.</span>
+
+<span class="sd">   Returns:</span>
+<span class="sd">   - HttpResponse</span>
+<span class="sd">      An HTTP response containing the profile details rendered in the template.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+   <span class="n">profile</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Profile</span><span class="p">,</span> <span class="n">user__username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
+   <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Displaying details of : </span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+   <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;profile&#39;</span><span class="p">:</span> <span class="n">profile</span><span class="p">}</span>
+   <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;profiles/profile.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="mise-en-place-des-tests-unitaires">
+<h2>Mise en place des tests unitaires<a class="headerlink" href="#mise-en-place-des-tests-unitaires" title="Lien vers cette rubrique"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Ecriture des tests unitaires et d’intégrations pour les vues, les URL et les modèles afin de garantir la qualité et le bon fonctionnement de notre application.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># lettings/tests.py</span>
+
+<span class="kn">from</span> <span class="nn">django.test</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Address</span><span class="p">,</span> <span class="n">Letting</span>
+
+
+<span class="k">class</span> <span class="nc">LettingsTest</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Test case for the Lettings app.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
+
+   <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Set up the test data before each test method.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="c1"># Creates instances of Address and Letting for testing</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">Address</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">number</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">street</span><span class="o">=</span><span class="s2">&quot;Boulevard test 1&quot;</span><span class="p">,</span>
+            <span class="n">city</span><span class="o">=</span><span class="s2">&quot;City 1&quot;</span><span class="p">,</span>
+            <span class="n">state</span><span class="o">=</span><span class="s2">&quot;State1&quot;</span><span class="p">,</span>
+            <span class="n">zip_code</span><span class="o">=</span><span class="mi">669988</span><span class="p">,</span>
+            <span class="n">country_iso_code</span><span class="o">=</span><span class="s2">&quot;FRA&quot;</span>
+      <span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">letting</span> <span class="o">=</span> <span class="n">Letting</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Test Letting&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">test_lettings_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Test the index view of the Lettings app.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="c1"># Checks if the index page returns a status code 200 and</span>
+      <span class="c1"># if the title is present in the content</span>
+      <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;lettings:index&#39;</span><span class="p">))</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;&lt;title&gt;Lettings&lt;/title&gt;&quot;</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">test_letting_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Test the letting detail view of the Lettings app.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="c1"># Checks if the letting detail page returns a status code 200</span>
+      <span class="c1"># and if the title of the letting is present in the content</span>
+      <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;lettings:letting&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s2">&quot;&lt;title&gt;Test Letting&lt;/title&gt;&quot;</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">test_lettings_models_str</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">      </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">      Test the __str__ methods of the Address and Letting models.</span>
+<span class="sd">      &quot;&quot;&quot;</span>
+      <span class="c1"># Checks if the string representation of the instances matches the expected format</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="p">),</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">address</span><span class="o">.</span><span class="n">street</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">letting</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">letting</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Vérification de la couverture des tests</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>venv<span class="o">)</span><span class="w"> </span>lahlou@lma-pc:~/P13$<span class="w"> </span>coverage<span class="w"> </span>run<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span>
+Found<span class="w"> </span><span class="m">9</span><span class="w"> </span>test<span class="o">(</span>s<span class="o">)</span>.
+Creating<span class="w"> </span><span class="nb">test</span><span class="w"> </span>database<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">alias</span><span class="w"> </span><span class="s1">&#39;default&#39;</span>...
+System<span class="w"> </span>check<span class="w"> </span>identified<span class="w"> </span>no<span class="w"> </span>issues<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="w"> </span>silenced<span class="o">)</span>.
+/home/lahlou/P13/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/middleware.py:134:<span class="w"> </span>UserWarning:<span class="w"> </span>No<span class="w"> </span>directory<span class="w"> </span>at:<span class="w"> </span>/home/lahlou/P13/staticfiles/
+self._inner<span class="w"> </span><span class="o">=</span><span class="w"> </span>middleware<span class="o">(</span>get_response,<span class="w"> </span>*args,<span class="w"> </span>**kwargs<span class="o">)</span>
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:41<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>details<span class="w"> </span>of<span class="w"> </span>letting<span class="w"> </span>ID:1
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:41<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>the<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>lettings.
+...
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:42<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>details<span class="w"> </span>of<span class="w"> </span>:<span class="w"> </span>UserTest
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:42<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>profiles<span class="w"> </span>list.
+..
+----------------------------------------------------------------------
+Ran<span class="w"> </span><span class="m">9</span><span class="w"> </span>tests<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">2</span>.641s
+
+OK
+Destroying<span class="w"> </span><span class="nb">test</span><span class="w"> </span>database<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nb">alias</span><span class="w"> </span><span class="s1">&#39;default&#39;</span>...
+<span class="o">(</span>venv<span class="o">)</span><span class="w"> </span>lahlou@lma-pc:~/P13$<span class="w"> </span>coverage<span class="w"> </span>report
+Name<span class="w">                           </span>Stmts<span class="w">   </span>Miss<span class="w">  </span>Cover
+--------------------------------------------------
+lettings/__init__.py<span class="w">               </span><span class="m">0</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+lettings/admin.py<span class="w">                  </span><span class="m">5</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+lettings/apps.py<span class="w">                   </span><span class="m">4</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+lettings/models.py<span class="w">                </span><span class="m">18</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+lettings/urls.py<span class="w">                   </span><span class="m">4</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+lettings/views.py<span class="w">                 </span><span class="m">14</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+manage.py<span class="w">                         </span><span class="m">11</span><span class="w">      </span><span class="m">2</span><span class="w">    </span><span class="m">82</span>%
+oc_lettings_site/__init__.py<span class="w">       </span><span class="m">0</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+oc_lettings_site/apps.py<span class="w">           </span><span class="m">3</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+oc_lettings_site/settings.py<span class="w">      </span><span class="m">34</span><span class="w">      </span><span class="m">1</span><span class="w">    </span><span class="m">97</span>%
+oc_lettings_site/urls.py<span class="w">           </span><span class="m">9</span><span class="w">      </span><span class="m">2</span><span class="w">    </span><span class="m">78</span>%
+oc_lettings_site/views.py<span class="w">         </span><span class="m">11</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+profiles/__init__.py<span class="w">               </span><span class="m">0</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+profiles/admin.py<span class="w">                  </span><span class="m">3</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+profiles/apps.py<span class="w">                   </span><span class="m">4</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+profiles/models.py<span class="w">                 </span><span class="m">7</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+profiles/urls.py<span class="w">                   </span><span class="m">4</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+profiles/views.py<span class="w">                 </span><span class="m">14</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+--------------------------------------------------
+TOTAL<span class="w">                            </span><span class="m">145</span><span class="w">      </span><span class="m">5</span><span class="w">    </span><span class="m">97</span>%
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="base-de-donnees.html" class="btn btn-neutral float-left" title="Structure de la base de données" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="logging_monitoring.html" class="btn btn-neutral float-right" title="Surveillance de l’application et suivi des erreurs via Sentry" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Mohand Arezki Lahlou.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Surveillance de l’application et suivi des erreurs via Sentry &mdash; Documentation Orange County Lettings 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d1a510d7"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Guide d’utilisation" href="guide_d_utilisation.html" />
+    <link rel="prev" title="Réduire diverses dettes techniques existantes dans le projet" href="reduire_dettes_techniques.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a_propos.html">À Propos du Projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies_utilisees.html">Technologies et Langages Utilisés</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation-en-local.html">Installation du projet sur votre machine</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture_modulaire.html">Réorganiser l’architecture modulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base-de-donnees.html">Structure de la base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reduire_dettes_techniques.html">Réduire diverses dettes techniques existantes dans le projet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Surveillance de l’application et suivi des erreurs via Sentry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mettre-en-place-de-sentry">Mettre en place de Sentry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-des-logs">Configuration des logs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide_d_utilisation.html">Guide d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cd-cd.html">Mise en place d un pipeline CI/CD</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Orange County Lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Surveillance de l’application et suivi des erreurs via Sentry</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/logging_monitoring.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <a class="reference external image-reference" href="https://www.sentry.io/"><img alt="https://img.shields.io/badge/Sentry-issues-red" src="https://img.shields.io/badge/Sentry-issues-red" /></a>
+<section id="surveillance-de-l-application-et-suivi-des-erreurs-via-sentry">
+<h1>Surveillance de l’application et suivi des erreurs via Sentry<a class="headerlink" href="#surveillance-de-l-application-et-suivi-des-erreurs-via-sentry" title="Lien vers cette rubrique"></a></h1>
+<section id="mettre-en-place-de-sentry">
+<h2>Mettre en place de Sentry<a class="headerlink" href="#mettre-en-place-de-sentry" title="Lien vers cette rubrique"></a></h2>
+<p>Pour surveiller votre application à l’aide de Sentry, suivez les étapes suivantes :</p>
+<ol class="arabic simple">
+<li><p>Créez un compte sur la plateforme Sentry en vous rendant sur <cite>https://sentry.io</cite>.</p></li>
+<li><p>Créez un projet « Django ».</p></li>
+</ol>
+<img alt="_images/sentry_create_project.png" class="align-center" src="_images/sentry_create_project.png" />
+<ol class="arabic simple" start="3">
+<li><p>Configurez le projet « Django »</p></li>
+</ol>
+<img alt="_images/sentry_config_project.png" class="align-center" src="_images/sentry_config_project.png" />
+<p>4. Installation
+Installez sentry-sdk depuis PyPI avec l’extra django :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span><span class="s1">&#39;sentry-sdk[django]&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Configurez le SDK</p></li>
+</ol>
+<p>Si vous avez le package django dans vos dépendances, l’intégration Django sera activée automatiquement lorsque vous initialiserez le SDK Sentry. Initialisez le SDK Sentry dans votre fichier settings.py Django :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># settings.py</span>
+<span class="kn">import</span> <span class="nn">sentry_sdk</span>
+
+<span class="n">sentry_sdk</span><span class="o">.</span><span class="n">init</span><span class="p">(</span>
+    <span class="n">dsn</span><span class="o">=</span><span class="s2">&quot;https://300a1b45f5eb8a75cb3f4daf9cd2400c@o4507108149886976.ingest.de.sentry.io/4507108292427856&quot;</span><span class="p">,</span>
+    <span class="c1"># Définissez traces_sample_rate sur 1.0 pour capturer 100%</span>
+    <span class="c1"># des transactions pour la surveillance des performances.</span>
+    <span class="n">traces_sample_rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="c1"># Définissez profiles_sample_rate sur 1.0 pour profiler 100%</span>
+    <span class="c1"># des transactions échantillonnées.</span>
+    <span class="c1"># Nous vous recommandons d&#39;ajuster cette valeur en production.</span>
+    <span class="n">profiles_sample_rate</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Vérification</p></li>
+</ol>
+<p>Vous pouvez facilement vérifier votre installation Sentry en créant une route qui déclenche une erreur :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># urls.py</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+
+<span class="k">def</span> <span class="nf">trigger_error</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">division_by_zero</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;sentry-debug/&#39;</span><span class="p">,</span> <span class="n">trigger_error</span><span class="p">),</span>
+    <span class="c1"># ...</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-des-logs">
+<h2>Configuration des logs<a class="headerlink" href="#configuration-des-logs" title="Lien vers cette rubrique"></a></h2>
+<p>La gestion des erreurs est complétée en utilisant le module de logging.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1"># oc_lettings_site/settings.py</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1"># Generate logging file name</span>
+<span class="linenos"> 4</span><span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="n">LOGGING_FILE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">LOGGING_DIR</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="s2">.log&quot;</span><span class="p">)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="c1"># Handlers manage the destination and format of logs</span>
+<span class="linenos"> 8</span><span class="n">LOGGING</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos"> 9</span>    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># Logging configuration version</span>
+<span class="linenos">10</span>    <span class="s2">&quot;disable_existing_loggers&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># Do not disable existing loggers</span>
+<span class="linenos">11</span>    <span class="c1"># Formatters define the format of log messages</span>
+<span class="linenos">12</span>    <span class="s2">&quot;formatters&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">13</span>        <span class="s2">&quot;standard&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">14</span>            <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%(levelname)-8s</span><span class="s2"> </span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(module)s</span><span class="s2"> </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="linenos">15</span>            <span class="s2">&quot;datefmt&quot;</span><span class="p">:</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
+<span class="linenos">16</span>        <span class="p">},</span>
+<span class="linenos">17</span>    <span class="p">},</span>
+<span class="linenos">18</span>    <span class="c1"># Handlers manage the destination and format of logs</span>
+<span class="linenos">19</span>    <span class="s2">&quot;handlers&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">20</span>        <span class="s2">&quot;sentry&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">21</span>            <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="s2">&quot;WARNING&quot;</span><span class="p">,</span>  <span class="c1"># Log level for Sentry</span>
+<span class="linenos">22</span>            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;sentry_sdk.integrations.logging.EventHandler&quot;</span><span class="p">,</span>
+<span class="linenos">23</span>        <span class="p">},</span>
+<span class="linenos">24</span>        <span class="s2">&quot;console&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">25</span>            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;logging.StreamHandler&quot;</span><span class="p">,</span>  <span class="c1"># Output logs to console</span>
+<span class="linenos">26</span>            <span class="s2">&quot;formatter&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>  <span class="c1"># Use the standard formatter</span>
+<span class="linenos">27</span>        <span class="p">},</span>
+<span class="linenos">28</span>        <span class="s2">&quot;file&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">29</span>            <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>  <span class="c1"># Log level for file</span>
+<span class="linenos">30</span>            <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;logging.FileHandler&quot;</span><span class="p">,</span>  <span class="c1"># Handler for writing to a file</span>
+<span class="linenos">31</span>            <span class="s2">&quot;filename&quot;</span><span class="p">:</span> <span class="n">LOGGING_FILE</span><span class="p">,</span>  <span class="c1"># Path to the log file</span>
+<span class="linenos">32</span>            <span class="s2">&quot;formatter&quot;</span><span class="p">:</span> <span class="s2">&quot;standard&quot;</span><span class="p">,</span>  <span class="c1"># Use the standard formatter</span>
+<span class="linenos">33</span>        <span class="p">},</span>
+<span class="linenos">34</span>    <span class="p">},</span>
+<span class="linenos">35</span>    <span class="c1"># Loggers specify handlers and log level</span>
+<span class="linenos">36</span>    <span class="s2">&quot;loggers&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">37</span>        <span class="s2">&quot;django&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">38</span>            <span class="s2">&quot;handlers&quot;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos">39</span>                <span class="s2">&quot;sentry&quot;</span><span class="p">,</span>
+<span class="linenos">40</span>                <span class="s2">&quot;console&quot;</span><span class="p">,</span>
+<span class="linenos">41</span>                <span class="s2">&quot;file&quot;</span><span class="p">,</span>
+<span class="linenos">42</span>            <span class="p">],</span>  <span class="c1"># Handlers used by this logger</span>
+<span class="linenos">43</span>            <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="s2">&quot;WARNING&quot;</span><span class="p">,</span>  <span class="c1"># Log level for Django</span>
+<span class="linenos">44</span>            <span class="s2">&quot;propagate&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Propagate logs to parent loggers</span>
+<span class="linenos">45</span>        <span class="p">},</span>
+<span class="linenos">46</span>        <span class="s2">&quot;lettings&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">47</span>            <span class="s2">&quot;handlers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sentry&quot;</span><span class="p">,</span> <span class="s2">&quot;console&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">],</span>
+<span class="linenos">48</span>            <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<span class="linenos">49</span>            <span class="s2">&quot;propagate&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos">50</span>        <span class="p">},</span>
+<span class="linenos">51</span>        <span class="s2">&quot;profiles&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">52</span>            <span class="s2">&quot;handlers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sentry&quot;</span><span class="p">,</span> <span class="s2">&quot;console&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">],</span>
+<span class="linenos">53</span>            <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<span class="linenos">54</span>            <span class="s2">&quot;propagate&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos">55</span>        <span class="p">},</span>
+<span class="linenos">56</span>        <span class="s2">&quot;oc_lettings_site&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="linenos">57</span>            <span class="s2">&quot;handlers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sentry&quot;</span><span class="p">,</span> <span class="s2">&quot;console&quot;</span><span class="p">,</span> <span class="s2">&quot;file&quot;</span><span class="p">],</span>
+<span class="linenos">58</span>            <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span>
+<span class="linenos">59</span>            <span class="s2">&quot;propagate&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos">60</span>        <span class="p">},</span>
+<span class="linenos">61</span>    <span class="p">},</span>
+<span class="linenos">62</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Les logs vont être sauvegardés dans un fichier sous le format &lt;YYYY-MM-DD.log&gt; dans le dossier &lt;logging&gt;.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># logging/2024-04-19.log</span>
+
+ERROR<span class="w">    </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">06</span>:52:30<span class="w"> </span>log<span class="w"> </span>Internal<span class="w"> </span>Server<span class="w"> </span>Error:<span class="w"> </span>/sentry-debug/
+Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+File<span class="w"> </span><span class="s2">&quot;/home/lahlou/P13/venv/lib/python3.11/site-packages/django/core/handlers/exception.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">55</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>inner
+<span class="w">    </span><span class="nv">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>get_response<span class="o">(</span>request<span class="o">)</span>
+<span class="w">            </span>^^^^^^^^^^^^^^^^^^^^^
+File<span class="w"> </span><span class="s2">&quot;/home/lahlou/P13/venv/lib/python3.11/site-packages/django/core/handlers/base.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">197</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>_get_response
+<span class="w">    </span><span class="nv">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>wrapped_callback<span class="o">(</span>request,<span class="w"> </span>*callback_args,<span class="w"> </span>**callback_kwargs<span class="o">)</span>
+<span class="w">            </span>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File<span class="w"> </span><span class="s2">&quot;/home/lahlou/P13/venv/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">84</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>sentry_wrapped_callback
+<span class="w">    </span><span class="k">return</span><span class="w"> </span>callback<span class="o">(</span>request,<span class="w"> </span>*args,<span class="w"> </span>**kwargs<span class="o">)</span>
+<span class="w">        </span>^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+File<span class="w"> </span><span class="s2">&quot;/home/lahlou/P13/oc_lettings_site/urls.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">11</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>trigger_error
+<span class="w">    </span><span class="nv">division_by_zero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>/<span class="w"> </span><span class="m">0</span>
+<span class="w">                    </span>~~^~~
+ZeroDivisionError:<span class="w"> </span>division<span class="w"> </span>by<span class="w"> </span>zero
+ERROR<span class="w">    </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">06</span>:52:30<span class="w"> </span>basehttp<span class="w"> </span><span class="s2">&quot;GET /sentry-debug/ HTTP/1.1&quot;</span><span class="w"> </span><span class="m">500</span><span class="w"> </span><span class="m">3496</span>
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:41<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>details<span class="w"> </span>of<span class="w"> </span>letting<span class="w"> </span>ID:1
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:41<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>the<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>lettings.
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:41<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>home<span class="w"> </span>page.
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:42<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>details<span class="w"> </span>of<span class="w"> </span>:<span class="w"> </span>UserTest
+INFO<span class="w">     </span><span class="m">2024</span>-04-19<span class="w"> </span><span class="m">11</span>:30:42<span class="w"> </span>views<span class="w"> </span>Displaying<span class="w"> </span>profiles<span class="w"> </span>list.
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="reduire_dettes_techniques.html" class="btn btn-neutral float-left" title="Réduire diverses dettes techniques existantes dans le projet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="guide_d_utilisation.html" class="btn btn-neutral float-right" title="Guide d’utilisation" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Mohand Arezki Lahlou.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
