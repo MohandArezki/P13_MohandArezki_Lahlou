@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation du projet sur votre machine &mdash; Documentation Orange County Lettings 1.0.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d1a510d7"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/translations.js?v=d99ca74e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Réorganiser l’architecture modulaire" href="architecture_modulaire.html" />
+    <link rel="prev" title="Technologies et Langages Utilisés" href="technologies_utilisees.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Sommaire</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="a_propos.html">À Propos du Projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies_utilisees.html">Technologies et Langages Utilisés</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation du projet sur votre machine</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cloner-le-depot">Cloner le dépôt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creer-l-environnement-virtuel">Créer l’environnement virtuel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#activer-l-environnement-virtuel">Activer l’environnement virtuel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installer-les-prerequis">Installer les prérequis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mettre-a-jour-le-fichier-env">Mettre à jour le fichier .env</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faire-le-linting-verification-de-la-syntaxe">Faire le linting (Vérification de la syntaxe)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#executer-les-tests">Exécuter les tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verifier-la-couverture-des-tests">Vérifier la couverture des tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#demarrer-le-serveur-django">Démarrer le serveur Django</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acceder-au-site">Accéder au site</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture_modulaire.html">Réorganiser l’architecture modulaire</a></li>
+<li class="toctree-l1"><a class="reference internal" href="base-de-donnees.html">Structure de la base de données</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reduire_dettes_techniques.html">Réduire diverses dettes techniques existantes dans le projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging_monitoring.html">Surveillance de l’application et suivi des erreurs via Sentry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_d_utilisation.html">Guide d’utilisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cd-cd.html">Mise en place d un pipeline CI/CD</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Orange County Lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation du projet sur votre machine</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation-en-local.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-du-projet-sur-votre-machine">
+<h1>Installation du projet sur votre machine<a class="headerlink" href="#installation-du-projet-sur-votre-machine" title="Lien vers cette rubrique"></a></h1>
+<section id="cloner-le-depot">
+<h2>Cloner le dépôt<a class="headerlink" href="#cloner-le-depot" title="Lien vers cette rubrique"></a></h2>
+<p>Pour commencer, créez un dossier pour le projet et accédez-y :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>oc_lettings
+<span class="nb">cd</span><span class="w"> </span>oc_lettings
+</pre></div>
+</div>
+<p>Clonez le dépôt dans le dossier courant :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MohandArezki/P13_MohandArezki_Lahlou.git<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="creer-l-environnement-virtuel">
+<h2>Créer l’environnement virtuel<a class="headerlink" href="#creer-l-environnement-virtuel" title="Lien vers cette rubrique"></a></h2>
+<p>Créez un environnement virtuel Python pour isoler les dépendances du projet :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+</pre></div>
+</div>
+</section>
+<section id="activer-l-environnement-virtuel">
+<h2>Activer l’environnement virtuel<a class="headerlink" href="#activer-l-environnement-virtuel" title="Lien vers cette rubrique"></a></h2>
+<p>Activez l’environnement virtuel nouvellement créé :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+</section>
+<section id="installer-les-prerequis">
+<h2>Installer les prérequis<a class="headerlink" href="#installer-les-prerequis" title="Lien vers cette rubrique"></a></h2>
+<p>Installez les dépendances nécessaires au projet à partir du fichier <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
+</div>
+</section>
+<section id="mettre-a-jour-le-fichier-env">
+<h2>Mettre à jour le fichier .env<a class="headerlink" href="#mettre-a-jour-le-fichier-env" title="Lien vers cette rubrique"></a></h2>
+<p>Pour configurer l’environnement, mettez à jour le fichier de configuration <code class="docutils literal notranslate"><span class="pre">.env</span></code> avec les valeurs appropriées :</p>
+<blockquote>
+<div><p>OC_LETTINGS_DEBUG : Cette variable détermine si Django fonctionne en mode débogage. Lorsqu’elle est définie sur « True », Django fonctionne en mode débogage, ce qui fournit des messages d’erreur utiles et d’autres informations de débogage. En production, elle devrait être définie sur « False » pour des raisons de sécurité.</p>
+<p>OC_LETTINGS_DJANGO_SECRET_KEY : Il s’agit de la clé secrète utilisée par Django pour la signature cryptographique. Elle est utilisée pour générer des hachages uniques pour les sessions, les jetons CSRF et d’autres fonctionnalités liées à la sécurité. Elle doit être gardée secrète et non partagée publiquement.</p>
+<p>OC_LETTINGS_ALLOWED_HOSTS : Cette variable spécifie une liste séparée par des virgules de noms d’hôtes/domaines que Django peut servir. Elle aide à prévenir les attaques de l’en-tête HTTP Host en permettant à Django de valider l’en-tête Host des requêtes entrantes par rapport à une liste d’hôtes autorisés. Chaque nom d’hôte/domaine doit être ajouté à cette liste.</p>
+<p>OC_LETTINGS_SENTRY_DSN : Il s’agit du Nom de Source de Données (DSN) pour Sentry, qui est une plateforme de suivi des erreurs. Le DSN est un identifiant unique qui permet à Sentry d’identifier vers quel projet les événements doivent être envoyés.</p>
+<p>OC_LETTINGS_SENTRY_ENV : Cette variable spécifie l’environnement dans lequel les événements Sentry se produisent. Elle est utilisée pour différencier entre différents environnements (comme le développement, la mise en scène et la production) dans l’interface de Sentry.</p>
+<p>OC_LETTINGS_CSRF_TRUSTED_ORIGINS : Cette variable spécifie une liste d’origines de confiance pour la protection contre les attaques par falsification de requête intersite (CSRF) dans Django. Elle aide à prévenir les attaques CSRF en spécifiant quelles origines sont autorisées à effectuer des requêtes vers l’application Django. Chaque origine doit être ajoutée à cette liste.</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">OC_LETTINGS_DEBUG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Value_A&quot;</span>
+<span class="nv">OC_LETTINGS_DJANGO_SECRET_KEY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Value_B&quot;</span>
+<span class="nv">OC_LETTINGS_ALLOWED_HOSTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Value_C,Value_D&quot;</span>
+<span class="nv">OC_LETTINGS_SENTRY_DSN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Value_E&quot;</span>
+<span class="nv">OC_LETTINGS_SENTRY_ENV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Value_F&quot;</span>
+<span class="nv">OC_LETTINGS_CSRF_TRUSTED_ORIGINS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Value_G,Value_H&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="faire-le-linting-verification-de-la-syntaxe">
+<h2>Faire le linting (Vérification de la syntaxe)<a class="headerlink" href="#faire-le-linting-verification-de-la-syntaxe" title="Lien vers cette rubrique"></a></h2>
+<p>Vérifiez que le code respecte les conventions de style et de syntaxe :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flake8
+</pre></div>
+</div>
+</section>
+<section id="executer-les-tests">
+<h2>Exécuter les tests<a class="headerlink" href="#executer-les-tests" title="Lien vers cette rubrique"></a></h2>
+<p>Exécutez les tests unitaires pour vous assurer que toutes les fonctionnalités fonctionnent correctement :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+</section>
+<section id="verifier-la-couverture-des-tests">
+<h2>Vérifier la couverture des tests<a class="headerlink" href="#verifier-la-couverture-des-tests" title="Lien vers cette rubrique"></a></h2>
+<p>Évaluez la qualité des tests en vérifiant la couverture du code :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span><span class="nb">test</span><span class="w"> </span>coverage
+</pre></div>
+</div>
+</section>
+<section id="demarrer-le-serveur-django">
+<h2>Démarrer le serveur Django<a class="headerlink" href="#demarrer-le-serveur-django" title="Lien vers cette rubrique"></a></h2>
+<p>Démarrez le serveur Django pour accéder au site web local :</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
+</pre></div>
+</div>
+</section>
+<section id="acceder-au-site">
+<h2>Accéder au site<a class="headerlink" href="#acceder-au-site" title="Lien vers cette rubrique"></a></h2>
+<p>Dans la barre d’adresse du navigateur web, saisissez l’URL suivante pour accéder au site Orange County Lettings : <a class="reference external" href="http://localhost:8000">http://localhost:8000</a>.</p>
+<hr class="docutils" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="technologies_utilisees.html" class="btn btn-neutral float-left" title="Technologies et Langages Utilisés" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+        <a href="architecture_modulaire.html" class="btn btn-neutral float-right" title="Réorganiser l’architecture modulaire" accesskey="n" rel="next">Suivant <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2024, Mohand Arezki Lahlou.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
